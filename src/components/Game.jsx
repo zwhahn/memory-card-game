@@ -12,6 +12,7 @@ export function Game() {
       const data = await res.json();
       console.log(data);
       const newCharacterData = data.map((character) => ({
+        id: character.id,
         name: character.name,
         image: character.image,
       }));
@@ -24,7 +25,7 @@ export function Game() {
     <>
       <div className="gameboard">
         {characterData.map((char) => (
-          <Card characterData={char}></Card>
+          <Card key={char.id} characterData={char}></Card>
         ))}
       </div>
     </>

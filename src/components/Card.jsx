@@ -1,4 +1,4 @@
-export function Card({ characterData = { image: "", name: "" } }) {
+export function Card({ characterData = { id: "", image: "", name: "" } }) {
   return (
     <div className="card">
       {characterData.name}
