@@ -6,6 +6,7 @@ export function Game() {
 
   const [characterData, setCharacterData] = useState([]);
   const [currentStreak, setCurrentStreak] = useState(0);
+  const [bestStreak, setBestStreak] = useState(0);
   const [pastSelections, setPastSelections] = useState([]);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export function Game() {
     } else {
       setCurrentStreak(currentStreak + 1);
       setPastSelections([...pastSelections, newID]);
+      setBestStreak(Math.max(bestStreak, currentStreak + 1));
     }
   }
 
@@ -48,7 +50,9 @@ export function Game() {
   return (
     <>
       <div className="game-container">
-        <div className="counter">Current Streak: {currentStreak} Best:</div>
+        <div className="counter">
+          Current Streak: {currentStreak} Best: {bestStreak}
+        </div>
         <div className="gameboard">
           {characterData.map((char) => (
             <Card
