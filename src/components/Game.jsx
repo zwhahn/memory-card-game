@@ -48,6 +48,7 @@ export function Game() {
       setPastSelections([...pastSelections, newID]);
       setBestStreak(Math.max(bestStreak, currentStreak + 1));
     }
+    setCharacterData(shuffle(characterData));
   }
 
   function checkRepeat(newID) {
