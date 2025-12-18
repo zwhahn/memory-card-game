@@ -9,6 +9,20 @@ export function Game() {
   const [bestStreak, setBestStreak] = useState(0);
   const [pastSelections, setPastSelections] = useState([]);
 
+  function shuffle(characterArray) {
+    let currentIndex = characterArray.length;
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [characterArray[currentIndex], characterArray[randomIndex]] = [
+        characterArray[randomIndex],
+        characterArray[currentIndex],
+      ];
+    }
+    return characterArray;
+  }
+
   useEffect(() => {
     const characterIDs = [1, 2, 3, 4, 5, 244];
     async function loadImage() {
@@ -20,7 +34,7 @@ export function Game() {
         name: character.name,
         image: character.image,
       }));
-      setCharacterData(newCharacterData);
+      setCharacterData(shuffle(newCharacterData));
     }
     loadImage();
   }, []);
