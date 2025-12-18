@@ -27,6 +27,13 @@ main {
   height: 90%;
 }
 
+.game-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
 .gameboard {
   width: 80%;
   display: grid;
