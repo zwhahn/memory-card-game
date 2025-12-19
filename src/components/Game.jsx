@@ -25,6 +25,8 @@ export function Game() {
   const [pastSelections, setPastSelections] = useState([]);
   const [repeatCardID, setRepeatCardID] = useState();
   const [characterIDs, setCharacterIDs] = useState(hardCharacterIDs);
+  const [gridClassName, setGridClassName] = useState("sixteen-cards");
+  const [btnSelect, setBtnSelect] = useState("hard");
 
   function shuffle(characterArray) {
     let currentIndex = characterArray.length;
@@ -71,12 +73,18 @@ export function Game() {
     console.log(difficulty);
     if (difficulty === "easy") {
       setCharacterIDs(easyCharacterIDs);
+      setGridClassName("six-cards");
+      setBtnSelect("easy");
     }
     if (difficulty === "medium") {
       setCharacterIDs(mediumCharacterIDs);
+      setGridClassName("twelve-cards");
+      setBtnSelect("medium");
     }
     if (difficulty === "hard") {
       setCharacterIDs(hardCharacterIDs);
+      setGridClassName("sixteen-cards");
+      setBtnSelect("hard");
     }
     resetGame();
     setBestStreak(0);
@@ -110,22 +118,32 @@ export function Game() {
   return (
     <>
       <div className="game-container">
-        <div className="counter">
-          Current Streak: {currentStreak} Best: {bestStreak}
-          <Button
-            difficulty="Easy"
-            onClick={() => handleDifficultyLevelClick("easy")}
-          ></Button>
-          <Button
-            difficulty="Medium"
-            onClick={() => handleDifficultyLevelClick("medium")}
-          ></Button>
-          <Button
-            difficulty="Hard"
-            onClick={() => handleDifficultyLevelClick("hard")}
-          ></Button>
+        <div className="scoreboard-and-menu">
+          <div className="scoreboard">
+            <div className="current-streak">
+              Current Streak: {currentStreak}
+            </div>
+            <div className="best-streak">Best Streak: {bestStreak}</div>
+          </div>
+          <div className="mode-selection">
+            <Button
+              difficulty="Easy"
+              selected={btnSelect === "easy" ? true : false}
+              onClick={() => handleDifficultyLevelClick("easy")}
+            ></Button>
+            <Button
+              difficulty="Medium"
+              selected={btnSelect === "medium" ? true : false}
+              onClick={() => handleDifficultyLevelClick("medium")}
+            ></Button>
+            <Button
+              difficulty="Hard"
+              selected={btnSelect === "hard" ? true : false}
+              onClick={() => handleDifficultyLevelClick("hard")}
+            ></Button>
+          </div>
         </div>
-        <div className="gameboard sixteen-cards">
+        <div className={"gameboard " + `${gridClassName}`}>
           {characterData.map((char) => (
             <Card
               key={char.id}

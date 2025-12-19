@@ -2,6 +2,9 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  --black: #222;
+  --white: #f2f2f2;
+  color: var(--black);
 }
 
 :root {
@@ -12,7 +15,6 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: brown;
 }
 
 header {
@@ -27,7 +29,6 @@ main {
   justify-content: center;
   align-items: center;
   height: 90vh;
-  background-color: aqua;
 }
 
 .game-container {
@@ -36,7 +37,6 @@ main {
   width: 80%;
   flex-direction: column;
   align-items: center;
-  background-color: blue;
 }
 
 .gameboard {
@@ -44,36 +44,73 @@ main {
   width: min(90%, 80vh);
   display: grid;
   gap: 20px;
-  background-color: red;
-  /* min-height: 0; */
 }
 
-/* .gameboard.six-cards {
+.gameboard.six-cards {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .gameboard.twelve-cards {
-} */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
 
 .gameboard.sixteen-cards {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
 
+.scoreboard-and-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  width: min(90%, 80vh);
+}
+
+.mode-selection button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.mode-selection .selected {
+  background-color: var(--black);
+  color: var(--white);
+}
+
 .card {
-  border: 1px solid black;
+  border: 1px solid var(--black);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   min-height: 0;
   min-width: 0;
+  background-color: var(--white);
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--black);
+}
+
+.card img {
+  flex: 1 1 auto;
+  border-radius: 10px 10px 0px 0px;
+  object-fit: cover;
+  min-height: 0;
+}
+
+.card .char-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-weight: bold;
 }
 
 .repeat {
   border: 3px solid red;
   box-shadow: 0 0 10px red;
-}
-
-.card img {
-  flex: 1 1 auto;
-  object-fit: contain;
-  min-height: 0;
 }

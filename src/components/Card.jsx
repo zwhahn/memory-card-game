@@ -8,8 +8,8 @@ export function Card({
       className={"card " + (repeatCardID === characterData.id ? "repeat" : "")}
       onClick={handleClick}
     >
-      {characterData.name}
       <img src={characterData.image} alt="" />
+      <div className="char-name">{characterData.name}</div>
     </button>
   );
 }
