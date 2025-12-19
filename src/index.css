@@ -28,6 +28,7 @@ body {
 
 header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 10vh;
@@ -39,11 +40,18 @@ h1 {
   color: var(--tardis);
 }
 
+.directions {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 85vh;
 }
 
 .game-container {
@@ -56,7 +64,7 @@ main {
 
 .gameboard {
   aspect-ratio: 1/1;
-  width: min(90%, 80vh);
+  width: min(90%, 75vh);
   display: grid;
   gap: 20px;
 }
@@ -81,12 +89,12 @@ main {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
-  width: min(90%, 80vh);
+  width: min(90%, 75vh);
 }
 
 .scoreboard {
   font-size: 1.1rem;
-  color: var(--tardis);
+  font-weight: bold;
 }
 
 .mode-selection button {
