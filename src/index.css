@@ -1,20 +1,29 @@
 * {
+  font-family: "Courier New", Courier, monospace;
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
   --black: #222;
   --white: #f2f2f2;
   color: var(--black);
+  --endo: #60a85f;
+  --kiwi: #88e23b;
+  --tardis: #043c6e;
+  --neon-blue: #00ffea;
 }
 
-:root {
-  font-family: "Courier New", Courier, monospace;
+@font-face {
+  font-family: "WubbaLubbaDubDub";
+  src: url("./assets/fonts/WubbaLubbaDubDub.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--endo);
 }
 
 header {
@@ -22,6 +31,12 @@ header {
   align-items: center;
   justify-content: center;
   height: 10vh;
+}
+
+h1 {
+  font-family: "WubbaLubbaDubDub";
+  font-size: 3rem;
+  color: var(--tardis);
 }
 
 main {
@@ -69,14 +84,28 @@ main {
   width: min(90%, 80vh);
 }
 
+.scoreboard {
+  font-size: 1.1rem;
+  color: var(--tardis);
+}
+
 .mode-selection button {
   padding: 5px 10px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0px;
+  border: 1px solid var(--black);
+  background-color: var(--white);
+  font-weight: bold;
+  font-family:;
+}
+
+.mode-selection button:hover {
+  background-color: var(--neon-blue);
+  color: var(--black);
 }
 
 .mode-selection .selected {
-  background-color: var(--black);
+  background-color: var(--tardis);
   color: var(--white);
 }
 
@@ -92,7 +121,8 @@ main {
 
 .card:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px var(--black);
+  border: 1px solid var(--kiwi);
+  box-shadow: 0 0 30px var(--kiwi);
 }
 
 .card img {
