@@ -23,10 +23,10 @@ export function Game() {
   const [currentStreak, setCurrentStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
   const [pastSelections, setPastSelections] = useState([]);
-  const [repeatCardID, setRepeatCardID] = useState();
-  const [characterIDs, setCharacterIDs] = useState(hardCharacterIDs);
-  const [gridClassName, setGridClassName] = useState("sixteen-cards");
-  const [btnSelect, setBtnSelect] = useState("hard");
+  const [repeatCardID, setRepeatCardID] = useState("");
+  const [characterIDs, setCharacterIDs] = useState(easyCharacterIDs);
+  const [gridClassName, setGridClassName] = useState("six-cards");
+  const [btnSelect, setBtnSelect] = useState("easy");
 
   function shuffle(characterArray) {
     let currentIndex = characterArray.length;
@@ -66,7 +66,7 @@ export function Game() {
   function resetGame() {
     setCurrentStreak(0);
     setRepeatCardID("");
-    setCharacterData(shuffle(characterData));
+    setPastSelections("");
   }
 
   function handleDifficultyLevelClick(difficulty) {
@@ -95,7 +95,8 @@ export function Game() {
       setRepeatCardID(newID);
       setTimeout(() => {
         resetGame();
-      }, 1000);
+        setCharacterData(shuffle(characterData));
+      }, 2000);
     } else {
       setCurrentStreak(currentStreak + 1);
       setPastSelections([...pastSelections, newID]);
@@ -107,7 +108,6 @@ export function Game() {
   function checkRepeat(newID) {
     console.log("newID: ", newID);
     for (let ID of pastSelections) {
-      console.log("ID: ", ID);
       if (newID === ID) {
         return true;
       }

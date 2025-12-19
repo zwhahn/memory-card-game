@@ -3,6 +3,7 @@ export function Card({
   handleClick,
   repeatCardID = "",
 }) {
+  console.log("repeatCardID: ", repeatCardID);
   return (
     <button
       className={"card " + (repeatCardID === characterData.id ? "repeat" : "")}

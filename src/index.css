@@ -152,3 +152,8 @@ main {
   border: 3px solid red;
   box-shadow: 0 0 10px red;
 }
+
+.repeat:hover {
+  border: 3px solid red;
+  box-shadow: 0 0 10px red;
+}
