@@ -1,14 +1,30 @@
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
+import { Button } from "./Button";
 
 export function Game() {
   const url = "https://rickandmortyapi.com/api/character/";
+
+  const easyCharacterIDs = [1, 2, 3, 4, 5, 599];
+  const mediumCharacterIDs = [
+    ...easyCharacterIDs,
+    282,
+    331,
+    240,
+    344,
+    180,
+    329,
+  ];
+  const hardCharacterIDs = [
+    1, 8, 15, 22, 69, 72, 74, 78, 86, 119, 135, 164, 165, 187, 215, 265,
+  ];
 
   const [characterData, setCharacterData] = useState([]);
   const [currentStreak, setCurrentStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
   const [pastSelections, setPastSelections] = useState([]);
   const [repeatCardID, setRepeatCardID] = useState();
+  const [characterIDs, setCharacterIDs] = useState(hardCharacterIDs);
 
   function shuffle(characterArray) {
     let currentIndex = characterArray.length;
@@ -25,11 +41,15 @@ export function Game() {
   }
 
   useEffect(() => {
-    const characterIDs = [1, 2, 3, 4, 5, 244];
     async function loadImage() {
+      const res2 = await fetch(
+        "https://rickandmortyapi.com/api/character/?name=rick",
+      );
+      const data2 = await res2.json();
+      console.log(data2);
       const res = await fetch(url + `${characterIDs}`);
       const data = await res.json();
-      console.log(data);
+      //   console.log(data);
       const newCharacterData = data.map((character) => ({
         id: character.id,
         name: character.name,
@@ -39,12 +59,27 @@ export function Game() {
       setCharacterData(shuffle(newCharacterData));
     }
     loadImage();
-  }, []);
+  }, [characterIDs]);
 
   function resetGame() {
     setCurrentStreak(0);
     setRepeatCardID("");
     setCharacterData(shuffle(characterData));
+  }
+
+  function handleDifficultyLevelClick(difficulty) {
+    console.log(difficulty);
+    if (difficulty === "easy") {
+      setCharacterIDs(easyCharacterIDs);
+    }
+    if (difficulty === "medium") {
+      setCharacterIDs(mediumCharacterIDs);
+    }
+    if (difficulty === "hard") {
+      setCharacterIDs(hardCharacterIDs);
+    }
+    resetGame();
+    setBestStreak(0);
   }
 
   function handleCardClick(newID) {
@@ -77,6 +112,18 @@ export function Game() {
       <div className="game-container">
         <div className="counter">
           Current Streak: {currentStreak} Best: {bestStreak}
+          <Button
+            difficulty="Easy"
+            onClick={() => handleDifficultyLevelClick("easy")}
+          ></Button>
+          <Button
+            difficulty="Medium"
+            onClick={() => handleDifficultyLevelClick("medium")}
+          ></Button>
+          <Button
+            difficulty="Hard"
+            onClick={() => handleDifficultyLevelClick("hard")}
+          ></Button>
         </div>
         <div className="gameboard">
           {characterData.map((char) => (
