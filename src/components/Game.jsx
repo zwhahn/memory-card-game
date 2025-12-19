@@ -125,7 +125,7 @@ export function Game() {
             onClick={() => handleDifficultyLevelClick("hard")}
           ></Button>
         </div>
-        <div className="gameboard">
+        <div className="gameboard sixteen-cards">
           {characterData.map((char) => (
             <Card
               key={char.id}

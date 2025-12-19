@@ -12,37 +12,51 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: brown;
 }
 
 header {
-  height: 10%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 10vh;
 }
 
 main {
   display: flex;
-  /* align-items: center; */
   justify-content: center;
-  height: 90%;
+  align-items: center;
+  height: 90vh;
+  background-color: aqua;
 }
 
 .game-container {
   display: flex;
+  height: 100%;
+  width: 80%;
   flex-direction: column;
-  width: 100%;
   align-items: center;
+  background-color: blue;
 }
 
 .gameboard {
-  width: 80%;
+  aspect-ratio: 1/1;
+  width: min(90%, 80vh);
   display: grid;
-  /* background-color: red; */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* grid-auto-rows: 1fr; */
-  grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
-  height: 600px;
   gap: 20px;
+  background-color: red;
+  /* min-height: 0; */
+}
+
+/* .gameboard.six-cards {
+}
+
+.gameboard.twelve-cards {
+} */
+
+.gameboard.sixteen-cards {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
 
 .card {
@@ -50,6 +64,7 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  min-width: 0;
 }
 
 .repeat {
