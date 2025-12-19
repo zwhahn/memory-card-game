@@ -8,6 +8,7 @@ export function Game() {
   const [currentStreak, setCurrentStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
   const [pastSelections, setPastSelections] = useState([]);
+  const [repeatCardID, setRepeatCardID] = useState();
 
   function shuffle(characterArray) {
     let currentIndex = characterArray.length;
@@ -33,22 +34,31 @@ export function Game() {
         id: character.id,
         name: character.name,
         image: character.image,
+        repeat: false,
       }));
       setCharacterData(shuffle(newCharacterData));
     }
     loadImage();
   }, []);
 
+  function resetGame() {
+    setCurrentStreak(0);
+    setRepeatCardID("");
+    setCharacterData(shuffle(characterData));
+  }
+
   function handleCardClick(newID) {
     if (checkRepeat(newID)) {
-      setCurrentStreak(0);
-      setPastSelections([]);
+      setRepeatCardID(newID);
+      setTimeout(() => {
+        resetGame();
+      }, 1000);
     } else {
       setCurrentStreak(currentStreak + 1);
       setPastSelections([...pastSelections, newID]);
       setBestStreak(Math.max(bestStreak, currentStreak + 1));
+      setCharacterData(shuffle(characterData));
     }
-    setCharacterData(shuffle(characterData));
   }
 
   function checkRepeat(newID) {
@@ -74,6 +84,7 @@ export function Game() {
               key={char.id}
               characterData={char}
               handleClick={() => handleCardClick(char.id)}
+              repeatCardID={repeatCardID}
             ></Card>
           ))}
         </div>
