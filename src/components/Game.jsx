@@ -27,6 +27,7 @@ export function Game() {
   const [characterIDs, setCharacterIDs] = useState(easyCharacterIDs);
   const [gridClassName, setGridClassName] = useState("six-cards");
   const [btnSelect, setBtnSelect] = useState("easy");
+  const [gameOver, setGameOver] = useState(false);
 
   function shuffle(characterArray) {
     let currentIndex = characterArray.length;
@@ -69,6 +70,20 @@ export function Game() {
     setPastSelections("");
   }
 
+  function isGameOver() {
+    console.log("current steak: ", currentStreak);
+    console.log("id length: ", characterIDs.length);
+    if (currentStreak + 1 == characterIDs.length) {
+      setGameOver(true);
+      return;
+    }
+  }
+
+  function handlePlayAgain() {
+    resetGame();
+    setGameOver(false);
+  }
+
   function handleDifficultyLevelClick(difficulty) {
     console.log(difficulty);
     if (difficulty === "easy") {
@@ -101,6 +116,7 @@ export function Game() {
       setCurrentStreak(currentStreak + 1);
       setPastSelections([...pastSelections, newID]);
       setBestStreak(Math.max(bestStreak, currentStreak + 1));
+      isGameOver();
       setCharacterData(shuffle(characterData));
     }
   }
@@ -118,6 +134,10 @@ export function Game() {
   return (
     <>
       <div className="game-container">
+        <div id="game-over" className={gameOver ? "show" : ""}>
+          <h1>You Won</h1>
+          <button onClick={() => handlePlayAgain()}>Play Again!</button>
+        </div>
         <div className="scoreboard-and-menu">
           <div className="scoreboard">
             <div className="current-streak">

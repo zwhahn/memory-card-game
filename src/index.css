@@ -55,6 +55,34 @@ main {
   height: 85vh;
 }
 
+#game-over {
+  display: none;
+  position: absolute;
+  background-color: color-mix(in srgb, var(--kiwi) 70%, transparent);
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+}
+
+#game-over h1 {
+  font-size: 5rem;
+}
+
+#game-over button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#game-over.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .game-container {
   display: flex;
   height: 100%;
@@ -105,7 +133,6 @@ main {
   border: 1px solid var(--black);
   background-color: var(--white);
   font-weight: bold;
-  font-family:;
 }
 
 .mode-selection button:hover {
