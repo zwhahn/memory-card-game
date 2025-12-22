@@ -45,14 +45,8 @@ export function Game() {
 
   useEffect(() => {
     async function loadImage() {
-      const res2 = await fetch(
-        "https://rickandmortyapi.com/api/character/?name=rick",
-      );
-      const data2 = await res2.json();
-      console.log(data2);
       const res = await fetch(url + `${characterIDs}`);
       const data = await res.json();
-      //   console.log(data);
       const newCharacterData = data.map((character) => ({
         id: character.id,
         name: character.name,
