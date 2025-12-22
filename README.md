@@ -1,16 +1,56 @@
-# React + Vite
+# Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Demo](https://rick-and-mortys-memory-game.netlify.app/)
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A web-based memory card game built with React. The objective is to click each character only once - clicking the same character twice looses the game! Character images and names are pulled from [RickAndMortyApi.com](https://rickandmortyapi.com/). It is hosted on Netlify.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 3 difficulty levels (Easy, Medium, Hard)
+- Score tracking and high score disply
+- Random card shuffle after each selection
+- Red highlight on incorrect selections
+- Victory screen upon selecting all unique cards
 
-## Expanding the ESLint configuration
+## Preview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Easy Difficulty (6 cards)
+
+![Easy Difficulty](./src/assets/images/easy.png)
+
+### Medium Difficulty (12 Cards)
+
+![Medium Difficulty](./src/assets/images/medium.png)
+
+### Hard Difficulty (18 Cards)
+
+![Hard Difficulty](./src/assets/images/hard.png)
+
+## How to Run Locally
+
+1. Clone the repository
+
+```bash
+git clone git@github.com:zwhahn/react-cv.git
+cd react-cv
+```
+
+2. Install dependencies and start the development server
+
+```bash
+npm install
+npm run dev
+```
+
+3. Open browser and navigate to: [http://localhost:5173](http://localhost:5173)
+
+## Tech Stack
+
+- React
+- Vite
+- JavaScript
+- CSS
+- Netlify
+- REST API (Rick and Morty API)
